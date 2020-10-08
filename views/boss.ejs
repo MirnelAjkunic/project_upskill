@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Boss</title>
+</head>
+<body id="boss">
+    <h1>Hallo, <%= user.firstName %> <%= user.lastName %>!</h1>
+    <form action="">
+        <input type="text" name="" id="">
+        <input type="submit" value="search">
+    </form>
+    <% if ("employees" in user) { %>
+        <% user.employees.forEach(elt => { %>
+            <div>
+                <a href="/boss/employees/<%= elt._id %>"><img src="<%= elt.profilePic %>" alt=""></a>
+                <h3><%= elt.firstName %> <%= elt.lastName %></h3>
+            </div>
+        <% }) %>
+    <% } %>
+    <form action="/boss/add" method="post">
+        <input type="text" name="firstName" id="" placeholder="first name">
+        <input type="text" name="lastName" id="" placeholder="last name">
+        <input type="text" name="emails" id="" placeholder="email">
+        <input type="submit" value="add">
+    </form>
+</body>
+</html>

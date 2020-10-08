@@ -7,12 +7,15 @@
     <title>menu</title>
 </head>
 <body>
+    <%- include('./nav.ejs') %>
     <% if (user == undefined) { %>
         <h2>Hallo, Guest!</h2>
         <% user._id = "guest" %> 
     <% } else { %>
         <h2>Hallo, <%= user.firstName %>!</h2>
         <a href="/user/mypage/<%= user._id %>">mypage</a><br>
+        <a href="/boss/mypage/<%= user._id %>">bosspage</a><br>
+        <a href="/auth/logout">logout</a><br>
     <% } %>
     <a href="/course/<%= user._id %>/sprachen">Sprachen</a>
     <a href="/course/<%= user._id %>/rhetorik">Rhetorik</a>
