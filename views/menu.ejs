@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>menu</title>
+</head>
+<body>
+    <% if (user == undefined) { %>
+        <h2>Hallo, Guest!</h2>
+        <% user._id = "guest" %> 
+    <% } else { %>
+        <h2>Hallo, <%= user.firstName %>!</h2>
+        <a href="/user/mypage/<%= user._id %>">mypage</a><br>
+    <% } %>
+    <a href="/course/<%= user._id %>/sprachen">Sprachen</a>
+    <a href="/course/<%= user._id %>/rhetorik">Rhetorik</a>
+    <a href="/course/<%= user._id %>/programme">Programme</a>
+    <a href="/course/<%= user._id %>/coding">Coding</a>
+</body>
+</html>
