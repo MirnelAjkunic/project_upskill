@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session')
 require('./config/passport-setup')
 const passport = require('passport');
-const keys = require('./config/keys')
+//const keys = require('./config/keys')
 const User = require('./models/user')
 
 mongoose.connect(process.env.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
