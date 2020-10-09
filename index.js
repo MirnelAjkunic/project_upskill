@@ -5,7 +5,7 @@ const cookieSession = require('cookie-session')
 require('./config/passport-setup')
 const passport = require('passport');
 const keys = require('./config/keys')
-const PORT = process.env.PORT||3000
+const PORT = process.env.PORT||3001
 
 mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
