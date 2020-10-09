@@ -16,7 +16,7 @@ passport.use(new GoogleStrategy(
     {
         clientID: process.env.clientID,
         clientSecret: process.env.clientSecret,
-        callbackURL: "http://localhost:3000/auth/google/callback"
+        callbackURL: "https://mighty-brook-13289.herokuapp.com/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
         User.find({ googleId: profile.id })
