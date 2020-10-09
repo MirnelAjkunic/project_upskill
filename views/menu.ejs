@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>menu</title>
+</head>
+
+<body>
+    <%- include('./nav.ejs', { user }) %>
+    <main id="home">
+        <section id="hero">
+            <div class="description">
+                <h1>ZERTIFIZIERT in die NEUE Jobwelt ...</h1>
+                <p>und damit Sicherheit für <span>Arbeitnehmer</span> und <span>Arbeitgeber</span> !</p>
+                <div class="colors">
+                    <div class="cl1"></div>
+                    <div class="cl2"></div>
+                    <div class="cl3"></div>
+                </div>
+            </div>
+        </section>
+        <section id="menu">
+            <a href="/course/<%= user._id %>/sprachen">Sprachen</a>
+            <a href="/course/<%= user._id %>/rhetorik">Rhetorik</a>
+            <a href="/course/<%= user._id %>/programme">Programme</a>
+            <a href="/course/<%= user._id %>/coding">Coding</a>
+        </section>
+    </main>
+    <%- include('./footer.ejs') %>
+</body>
+
+</html>

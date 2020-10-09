@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mypage.css">
+    <title>mypage</title>
+    <script src="https://kit.fontawesome.com/08168b175b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <%- include('./nav.ejs') %>
+
+    <div id="mypage" class="grid-container">
+        <main>
+ 
+
+
+
+        <div class="flexbox">
+
+            <div class="left">
+            <img src="<%= user.profilePic %>" alt="pic" class="propic">
+            </div>
+
+            <div class="right flexbox">
+            <h2><%= user.firstName %> <%= user.lastName %>, <%= user.job %></h2>
+            <p><i class="fas fa-check-circle fa-fw"></i>Hoch motiviert</p>
+            <p><i class="fas fa-check-circle fa-fw"></i>Sehr fleibel</p>
+            <p>I believe that optimism is the faith that leads to achievement. My optimism knows no bounderies. I never compromise on feeling optimistic.</p>
+
+            <div class="flexbox btns">
+                <a href="#" class="btn">Portfolio</a>
+                <a href="#" class="btn">Contact me</a>
+            </div>
+
+        </div>
+        </div>
+
+
+
+
+
+        <article>
+            <h2>Wer ich bin...</h2>
+            <p><%= user.description %></p>
+        </article>
+
+
+
+
+
+
+    
+        <section class="skills1 flexbox">
+            
+            <div class="left">
+                <h2>Skills in progress: Kürse</h2>
+                <!-- repeatable -->
+                <div class="grid-progress">
+                    <div><h3>English C1</h3></div>
+                    <div>
+                        <progress class="progress is-info" value="93" max="100">93%</progress>
+                    </div>
+                    <div><h3 class="done">93%</h3></div> 
+                </div>
+                    <!-- end repeatable -->
+
+                    <!-- repeatable -->
+                    <div class="grid-progress">
+                        <div><h3>Rhetorik</h3></div>
+                        <div>
+                            <progress class="progress is-info" value="45" max="100">45%</progress>
+                        </div>
+                        <div><h3 class="done">45%</h3></div> 
+                    </div>
+                    <!-- end repeatable -->
+
+                    <!-- repeatable -->
+                <div class="grid-progress">
+                    <div><h3>Javascript</h3></div>
+                    <div>
+                        <progress class="progress is-info" value="74" max="100">74%</progress>
+                    </div>
+                    <div><h3 class="done">74%</h3></div> 
+                </div>
+                <!-- end repeatable -->
+            </div>
+
+
+            <div class="right">
+                <h2>Abgeschlossen</h2>
+                <!-- repeatable -->
+                <div>
+                    <div class="date"><h3>Januar 2021</h3></div>
+                <div>
+                <!-- end repeatable -->
+
+                <!-- repeatable -->
+                <div>
+                    <div class="date"><h3>Februar 2021</h3></div>
+                <div>
+                <!-- end repeatable -->
+                
+                <!-- repeatable -->
+                <div>
+                    <div class="date"><h3>März 2021</h3></div>
+                <div>
+                <!-- end repeatable -->
+            </div>
+
+        </section>
+
+
+
+            <!-- Skills2  -->
+
+
+
+        <section class="skills2">
+            <h2>Das kann ich schon...</h2>
+
+
+
+             <!-- repeatable -->
+             <div class="grid-progress">
+                <div><h3>PHP</h3></div>
+                <div>
+                    <progress class="progress is-success" value="100" max="100">100%</progress>
+                </div>
+                <div><h3 class="done">100%</h3></div> 
+            </div>
+                <!-- end repeatable -->
+
+                             <!-- repeatable -->
+             <div class="grid-progress">
+                <div><h3>Ballett</h3></div>
+                <div>
+                    <progress class="progress is-success" value="100" max="100">100%</progress>
+                </div>
+                <div><h3 class="done">100%</h3></div> 
+            </div>
+                <!-- end repeatable -->
+
+            <!-- repeatable -->
+             <div class="grid-progress">
+                <div><h3>Italienisch</h3></div>
+                <div>
+                    <progress class="progress is-success" value="100" max="100">100%</progress>
+                </div>
+                <div><h3 class="done">100%</h3></div> 
+            </div>
+                <!-- end repeatable -->
+
+                            <!-- repeatable -->
+             <div class="grid-progress">
+                <div><h3>Soft Skills</h3></div>
+                <div>
+                    <progress class="progress is-success" value="100" max="100">100%</progress>
+                </div>
+                <div><h3 class="done">100%</h3></div> 
+            </div>
+                <!-- end repeatable -->
+
+
+
+        </section>
+
+        <section >
+            <a href="#" class="btn cta">Contact <%= user.firstName %></a>
+        </section>
+        
+
+
+
+        </main>
+        <aside class="flexbox">
+            <h3><i class="fas fa-calendar-day"></i> 
+            Berufseinsteig:</h3>
+            <div class="flexbox">
+                <p><%= user.bEinstiegStr %></p><i class="far fa-check-circle"></i> 
+            </div>  
+
+            <h3><i class="fas fa-id-card"></i>Staatsangehörigkeit:</h3>
+            <div class="flexbox">
+                <p><%= user.herkunft %></p><i class="far fa-check-circle"></i>
+            </div>  
+
+            <h3><i class="fas fa-user"></i>Alter:</h3>
+            <div class="flexbox">
+                <p><%= birth %> </p><i class="far fa-check-circle"></i>
+            </div>  
+
+            <h3><i class="fas fa-globe"></i>Location:</h3>
+            <div class="flexbox">
+                <p><%= user.location %></p><i class="far fa-check-circle"></i>
+            </div>  
+
+            <h3>Soziale Netzwerke:</h3>
+            <div class="social">
+                <p><i class="fab fa-facebook"></i></p>
+                <p><i class="fab fa-twitter"></i></p>
+                <p><i class="fab fa-instagram-square"></i></p>
+            </div>  
+        </aside>
+
+
+
+
+
+
+
+
+    </div>
+
+    <% if (!isBoss) { %>
+        <section id="updateclick">
+            <a onclick="toggleClass()" class="btn">update</a>
+        </section>
+        <div id="updateform">
+            <form action="/user/update" method="post">
+                <h3>job</h3>
+                <input type="text" name="job" id="" placeholder="job" value="<%= user.job %>"> 
+                <h3>description</h3>
+                <textarea name="description" id="" cols="30" rows="10"
+                    placeholder="description"><%= user.description %></textarea>
+                <div id="skills">
+                    <h3>current skills</h3> <input type="button" value="+" onclick="addSkills()"><br>
+                    <% if (user.currentSkills.length > 0) { %>
+                    <% user.currentSkills.forEach(elt => { %>
+                    <input type="text" name="skilltitle[]" id="" value="<%= elt.title %>">
+                    <input type="text" name="skilllevel[]" id="" value="<%= elt.level %>"><br>
+                    <% }) %>
+                    <% } else { %>
+                    <input type="text" name="skilltitle[]" id="" placeholder="title">
+                    <input type="text" name="skilllevel[]" id="" placeholder="level"><br>
+                    <% } %>
+                </div>
+                <h3>berufseinsteig</h3>
+                <input type="date" name="bEinstieg" id="" value="<%= user.bEinstiegStr %>">
+                <h3>birsday</h3>
+                <input type="date" name="birthday" id="" value="<%= user.birthdayStr %>">
+                <h3>herkunft</h3>
+                <input type="text" name="herkunft" id="" value="<%= user.herkunft %>">
+                <h3>location</h3>
+                <input type="text" name="location" id="" value="<%= user.location %>">
+                <div id="social">
+                    <h3>social</h3> <input type="button" value="+" onclick="addSocial()"><br>
+                    <% if (user.social.length > 0) { %>
+                    <% user.social.forEach(elt => { %>
+                    <input type="text" name="socialtitle[]" id="" value="<%= elt.title %>">
+                    <input type="text" name="socialurl[]" id="" value="<%= elt.url %>"><br>
+                    <% }) %>
+                    <% } else { %>
+                    <input type="text" name="socialtitle[]" id="" placeholder="title">
+                    <input type="text" name="socialurl[]" id="" placeholder="url"><br>
+                    <% } %>
+                </div>
+                <input type="submit" value="submit" class="btn">
+            </form>
+        </div>
+    <% } %>
+    <%- include('./footer.ejs') %>
+    <script>
+        function addSkills() {
+            document.getElementById("skills").innerHTML += `
+            <input type="text" name="skilltitle[]" id="" placeholder="title">
+            <input type="text" name="skilllevel[]" id="" placeholder="level"><br>
+            `
+        }
+        function addSocial() {
+            document.getElementById("social").innerHTML += `
+            <input type="text" name="socialtitle[]" id="" placeholder="title">
+            <input type="text" name="socialurl[]" id="" placeholder="url"><br>
+            `
+        }
+        const form = document.getElementById("updateform")
+        form.classList.add('hidden')
+        function toggleClass(){
+            form.classList.toggle('hidden')
+        }
+    </script>
+</body>
+
+</html>

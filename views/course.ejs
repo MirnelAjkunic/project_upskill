@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title><%= coursename %> </title>
+</head>
+<% let object = {} %>
+<body>
+    <%- include('./nav.ejs') %>
+    <h1><%= coursename %></h1>
+    <% if (user == undefined) { %>
+        <% object._id = "guest" %> 
+    <% } else { %>
+        <% object = user %> 
+    <% } %>
+    <a href="/start/<%= object._id %>/<%= coursename %>/course1">course1</a>
+    <%- include('./footer.ejs') %>
+</body>
+</html>

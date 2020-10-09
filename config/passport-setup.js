@@ -25,7 +25,6 @@ passport.use(new GoogleStrategy(
                 } else {
                     new User({
                         googleId: profile.id,
-                        isBoss: false,
                         firstName: profile.name.givenName,
                         lastName: profile.name.familyName,
                         emails: profile.emails[0].value,
