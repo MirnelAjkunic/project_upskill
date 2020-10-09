@@ -28,9 +28,10 @@ app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
     if (req.user == undefined) {
-        res.render('index', { user: req.user })
+        let object = {}
+        object._id = "guest"
+        res.render('menu', { user: object })
     } else {
-        console.log(req.user);
         res.redirect('/user/menu/' + req.user._id)
     }
 })
@@ -40,7 +41,55 @@ app.get('/user/menu/:id', (req, res) => {
 })
 
 app.get('/user/mypage/:id', (req, res) => {
-    res.render('mypage', { user: req.user, isBoss: false })
+    let birth = ''
+    if (req.user.birthday != undefined) {
+        let heute = new Date()
+        let heuteY = heute.getFullYear()
+        birth = req.user.birthday.getFullYear()
+        birth = heuteY - birth
+    }
+    res.render('mypage', { user: req.user, isBoss: false, birth })
+})
+
+app.post('/user/update', async (req, res) => {
+    console.log("FORM   :", req.body)
+    let update = {}
+    if (req.body.job != '') update.job = req.body.job
+    if (req.body.description != '') update.description = req.body.description
+    if (req.body.bEinstieg != '') {
+        update.bEinstieg = req.body.bEinstieg
+        update.bEinstiegStr = String(req.body.bEinstieg)
+    }
+    if (req.body.birthday != '') {
+        update.birthday = req.body.birthday
+        update.birthdayStr = String(req.body.birthday)
+    }
+    if (req.body.herkunft != '') update.herkunft = req.body.herkunft
+    if (req.body.location != '') update.location = req.body.location
+    update.currentSkills = []
+    for (let i = 0; i < req.body["skilltitle[]"].length; i++) {
+        if (req.body["skilltitle[]"][i] != '' && req.body["skilllevel[]"][i] != '') {
+            update.currentSkills.push({
+                title: req.body["skilltitle[]"][i],
+                level: req.body["skilllevel[]"][i]
+            })
+        }
+    }
+    update.social = []
+    for (let i = 0; i < req.body["socialtitle[]"].length; i++) {
+        if (req.body["socialtitle[]"][i] != '' && req.body["socialurl[]"][i] != '') {
+            update.social.push({
+                title: req.body["socialtitle[]"][i],
+                url: req.body["socialurl[]"][i]
+            })
+        }
+    }
+    let update1 = { $set: update }
+    User.findOneAndUpdate({ _id: req.user.id }, update1, { new: true, useFindAndModify: false })
+        .then(result => {
+            res.redirect('/user/mypage/' + req.user._id)
+        })
+        .catch(err => console.error(`Failed to find and update document: ${err}`))
 })
 
 app.get('/course/:id/:coursename', (req, res) => {
@@ -48,6 +97,10 @@ app.get('/course/:id/:coursename', (req, res) => {
 })
 
 app.get('/start/:id/:coursename/:chapter', async (req, res) => {
+    if (req.params.id == "guest") {
+        res.redirect('/auth/google')
+        return
+    }
     let doc = await User.findOne({ _id: req.params.id })
     let update = []
     if (doc.skillsProgress != undefined) {
@@ -60,12 +113,12 @@ app.get('/start/:id/:coursename/:chapter', async (req, res) => {
     console.log(update);
     let update1 = { $set: { skillsProgress: update } }
     console.log(update1);
-    User.findOneAndUpdate({ _id: req.params.id }, update1, { new: true, useFindAndModify: true })
+    User.findOneAndUpdate({ _id: req.params.id }, update1, { new: true, useFindAndModify: false })
         .then(result => {
             console.log(result);
         })
         .catch(err => console.error(`Failed to find and update document: ${err}`))
-    res.redirect('https://www.udemy.com/de/')
+    res.redirect('/')
 })
 
 app.get('/boss/mypage/:id', (req, res) => {
@@ -74,8 +127,14 @@ app.get('/boss/mypage/:id', (req, res) => {
 
 app.get('/boss/employees/:id', async (req, res) => {
     let doc = await User.findOne({ _id: req.params.id })
-    console.log(doc);
-    res.render('mypage', { user: doc, isBoss: true })
+    let birth = ''
+    if (doc.birthday != undefined) {
+        let heute = new Date()
+        let heuteY = heute.getFullYear()
+        birth = doc.birthday.getFullYear()
+        birth = heuteY - birth
+    }
+    res.render('mypage', { user: doc, isBoss: true, birth })
 })
 
 app.post('/boss/add', async (req, res) => {
@@ -91,16 +150,16 @@ app.post('/boss/add', async (req, res) => {
             update = boss.employees
         }
         update.push({
-            _id : employees._id,
+            _id: employees._id,
             firstName: employees.firstName,
             lastName: employees.lastName,
             emails: employees.emails,
-            profilePic: employees.picture
+            profilePic: employees.profilePic
         })
         console.log(update);
         let update1 = { $set: { employees: update } }
         console.log(update1);
-        await User.findOneAndUpdate({ _id: req.user.id }, update1, { new: true, useFindAndModify: true })
+        await User.findOneAndUpdate({ _id: req.user.id }, update1, { new: true, useFindAndModify: false })
             .then(result => {
                 console.log(result);
             })

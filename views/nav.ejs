@@ -1,18 +1,30 @@
-<nav>
-    <ul>
-      <a href=""> Wir </a>
-    </ul>
-    <ul>
-      <a href="">Arbeitgeber</a>
-    </ul>
-    <ul>
-      <a href=""></a
-      ><img src="/upSkills.png" alt="" />
-    </ul>
-    <ul>
-      <a href="">Arbeitnehmer</a>
-    </ul>
-    <ul>
-      <a href="">Contact</a>
-    </ul>
-</nav>
+<header>
+  <div class="width">
+    <div class="navfirst">
+      <div class="userName">
+      <% if (user._id == "guest") { %>
+        <h2>Hallo, Guest!</h2>
+        <a href="/auth/google">LOGIN</a>
+        <% } else { %>
+        <h2>Hallo, <%= user.firstName %>!</h2>
+        <a href="/auth/logout">LOGOUT</a><br>
+        <% } %>
+      </div>
+      <ul>
+        <li><a href="">Impressum</a></li>
+        <li><a href="">Datenschutz</a></li>
+      </ul>
+    </div>
+    <nav class="ph-line-nav">
+      <a href="/user/mypage/<%= user._id %>" class="one">Arbeit<span>nehmer</span> </a>
+      <a href="/boss/mypage/<%= user._id %>" class="two">Arbeit<span>geber</span></a>
+      <a href=""></a>
+      <a href="#" class="three">Unser Konzept</a>
+      <a href="#" class="four">Kontakt</a>
+      <div class="effect"></div>
+    </nav>
+  </div>
+  <div class="navimg">
+    <a href="/"><img src="/upskill.svg" alt="" /></a>
+  </div>
+</header>
