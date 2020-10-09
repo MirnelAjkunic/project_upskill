@@ -70,16 +70,16 @@ nav {
     left: 0;
     transition: 0.3s ease-in-out;
   }
-  nav a:nth-child(1):focus ~ .effect {
+  nav a:nth-child(1):focus ~ .effect, .effect.mypage {
     left: 0%;
   }
-  nav a:nth-child(2):focus ~ .effect {
+  nav a:nth-child(2):focus ~ .effect, .effect.boss {
     left: 20%;
   }
   nav a:nth-child(3):focus ~ .effect {
     left: 40%;
   }
-  nav a:nth-child(4):focus ~ .effect {
+  nav a:nth-child(4):focus ~ .effect, .effect.menu {
     left: 60%;
   }
   nav a:nth-child(5):focus ~ .effect {
@@ -105,13 +105,19 @@ nav {
   }
 
 /* **************************** tag2 **************************** */
-#home #hero{
+#hero{
     height: 80vh;
     background: url('/homehero.png') center/cover no-repeat;
     position: relative;
     margin-bottom: 150px;
 }
-#home #hero .description{
+#boss #hero{
+    background-image: url('/bosshero.png');
+}
+#emp #hero{
+    background-image: url('/emphero.png');
+}
+#hero .description{
     background: #07247D;
     color: #fff;
     position: absolute;
@@ -121,35 +127,50 @@ nav {
     font-weight: 300;
     width: 80vw;
 }
-#home #hero .description h1{
+#hero .description h1{
     margin: 40px 50px 10px;
     font-size: 50px;
 }
-#home #hero .description p{
+#hero .description p{
     font-size: 30px;
     margin: 10px 50px 50px;
 }
-#home #hero .description p span{
+#hero .description p span{
     font-weight: 700;
 }
-#home #hero .description .colors{
+#hero .description form{
+    margin: 10px 50px 50px;
+}
+#hero .description form input{
+    padding: 10px 50px;
+}
+#hero .description form input[type=text]{
+    width: 50%;
+}
+#hero .description .colors{
     display: grid;
     grid-template-columns: repeat(3,1fr);
     height: 10px;
 }
-#home #hero .description .colors .cl1{
+#hero .description .colors .cl1{
     background: #46A59E;
 }
-#home #hero .description .colors .cl2{
+#hero .description .colors .cl2{
     background: #F3BE41;
 }
-#home #hero .description .colors .cl3{
+#hero .description .colors .cl3{
     background: #D54328;
 }
 #home #menu{
     margin: 0 10% 100px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+#hero>h1{
+    font-size: 5em;
+    font-weight: 300;
+    color: #fff;
+    padding: 15vh 15vw;
 }
 #boss .item img{
     width: 100px;

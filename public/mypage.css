@@ -50,7 +50,7 @@ Ubuntu Bold 700
     grid-template-rows: 100%;
     margin: 100px 10% 0;
 }
-main{
+#mypage main{
     grid-column: 1 / span 3;
     margin-right: 3%;
 }
@@ -78,22 +78,22 @@ main{
 }
 
 /* global stuff */
-main > *{
+#mypage main > *{
     margin-bottom: 48px;
 }
-h1, h2, h3, h4, h5, h6{
+#mypage h1, #mypage h2, #mypage h3, #mypage h4, #mypage h5, #mypage h6{
     color: var(--blue);
     margin-bottom: 1rem;
 }
-p {
+#mypage p {
     font-size: 1.1rem;
     line-height: 1.8;
 }
-a{
+#mypage a{
     font-weight: 700;
     letter-spacing: 1px;
 }
-i{
+#mypage i{
     margin-right: 5px;
 }
 

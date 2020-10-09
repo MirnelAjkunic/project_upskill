@@ -30,17 +30,20 @@ app.get('/', (req, res) => {
     if (req.user == undefined) {
         let object = {}
         object._id = "guest"
-        res.render('menu', { user: object })
+        res.render('menu', { user: object, headerKey:"menu" })
     } else {
         res.redirect('/user/menu/' + req.user._id)
     }
 })
 
 app.get('/user/menu/:id', (req, res) => {
-    res.render('menu', { user: req.user })
+    res.render('menu', { user: req.user, headerKey:"menu" })
 })
 
 app.get('/user/mypage/:id', (req, res) => {
+    if (req.params.id == 'guest') {
+        res.redirect('/')
+    }
     let birth = ''
     if (req.user.birthday != undefined) {
         let heute = new Date()
@@ -48,7 +51,7 @@ app.get('/user/mypage/:id', (req, res) => {
         birth = req.user.birthday.getFullYear()
         birth = heuteY - birth
     }
-    res.render('mypage', { user: req.user, isBoss: false, birth })
+    res.render('mypage', { user: req.user, isBoss: false, birth, headerKey:"mypage" })
 })
 
 app.post('/user/update', async (req, res) => {
@@ -93,7 +96,7 @@ app.post('/user/update', async (req, res) => {
 })
 
 app.get('/course/:id/:coursename', (req, res) => {
-    res.render('course', { user: req.user, coursename: req.params.coursename })
+    res.render('course', { user: req.user, coursename: req.params.coursename, headerKey:"course" })
 })
 
 app.get('/start/:id/:coursename/:chapter', async (req, res) => {
@@ -121,8 +124,19 @@ app.get('/start/:id/:coursename/:chapter', async (req, res) => {
     res.redirect('/')
 })
 
+app.get('/employees', (req, res) => {
+    res.render('employees', { user: req.user, headerKey:"mypage" })
+})
+
 app.get('/boss/mypage/:id', (req, res) => {
-    res.render('boss', { user: req.user })
+    if (req.user == undefined) {
+        let object = {}
+        object.firstName = "Guest"
+        object._id = "guest"
+        res.render('boss', { user: object, headerKey:"boss" })
+    } else {
+        res.render('boss', { user: req.user, headerKey:"boss" })
+    }
 })
 
 app.get('/boss/employees/:id', async (req, res) => {
@@ -134,7 +148,7 @@ app.get('/boss/employees/:id', async (req, res) => {
         birth = doc.birthday.getFullYear()
         birth = heuteY - birth
     }
-    res.render('mypage', { user: doc, isBoss: true, birth })
+    res.render('mypage', { user: doc, isBoss: true, birth, headerKey:"mypage" })
 })
 
 app.post('/boss/add', async (req, res) => {
