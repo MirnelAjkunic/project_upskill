@@ -126,7 +126,13 @@ app.get('/start/:id/:coursename/:chapter', async (req, res) => {
 })
 
 app.get('/employees', (req, res) => {
-    res.render('employees', { user: req.user, headerKey:"mypage" })
+    if (req.user == undefined) {
+        let object = {}
+        object._id = "guest"
+        res.render('employees', { user: object, headerKey:"mypage" })
+    } else {
+        res.render('employees', { user: req.user, headerKey:"mypage" })
+    }
 })
 
 app.get('/boss/mypage/:id', (req, res) => {
