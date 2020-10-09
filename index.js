@@ -6,7 +6,6 @@ const cookieSession = require('cookie-session')
 require('./config/passport-setup')
 const passport = require('passport');
 const keys = require('./config/keys')
-const PORT = process.env.PORT
 const User = require('./models/user')
 
 mongoose.connect(process.env.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -202,7 +201,7 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('/')
 })
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT||3000, () => {
     console.log('server listening at 3000')
 })
 
