@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const app = express()
 const mongoose = require('mongoose');
@@ -8,7 +9,7 @@ const keys = require('./config/keys')
 const PORT = process.env.PORT || 3000
 const User = require('./models/user')
 
-mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('connected to db')
     })
@@ -16,7 +17,7 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology
 app.use(cookieSession({
     name: 'session',
     maxAge: 7 * 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey]
+    keys: [process.env.cookieKey]
 }))
 
 app.use(express.static('public'))
